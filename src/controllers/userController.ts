@@ -40,6 +40,13 @@ export const registerPage = async (req: Request, res: Response) => {
     age: 20,
   };
 
+  const result = await User.findAll({ where: { id: 17 } });
+  if (result.length > 0) {
+    let usuario = result[0];
+
+    await usuario.destroy();
+  }
+
   const users = await User.findAll();
 
   return res.render("pages/cadastro", {

@@ -124,10 +124,20 @@ await User.update(
 
 // Um dado específico =========================
 
+
+// --salvar
   const result = await User.findAll({ where: { id: 1 } });
   if (result.length > 0) {
     let usuario = result[0];
     usuario.age = 60;
 
     await usuario.save();
+  }
+
+  -- deletar
+  const result = await User.findAll({ where: { id: 17 } });
+  if (result.length > 0) {
+    let usuario = result[0];
+
+    await usuario.destroy();
   }
