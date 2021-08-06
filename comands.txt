@@ -1,0 +1,22 @@
+findAll()  === retorna tudo
+    -- parametros
+    1°: findAll({
+        attributes: Um array informando quais colunas devem trazer, ex ['name', 'age]
+    })
+
+    2°: findAll({
+        attributes: {exclude: 'Remove aq a coluna que nao quer q venha'}
+    })
+    
+
+    3°: findAll({
+        where: Aqui tem varias condições e jeitos de se fazer
+    })
+
+
+Op: Helper para operações lógicas
+[Op.lt]: 40    === < menor q 40
+[Op.lte]: 40    === <= menor ou igual q 40
+
+[Op.gt]: 40    === > maaior 40
+[Op.gte]: 40   === >= maior ou igual 40

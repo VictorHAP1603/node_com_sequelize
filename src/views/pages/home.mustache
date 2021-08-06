@@ -35,4 +35,12 @@ Opa {{name}} {{lastName}}, tudo bem?
     {{/frasesDoDia}}
 </ul>
 
+<hr>
+
+<ul>
+    {{#users}}
+        <li>Nome: {{ name }} | Idade: - {{ age }} </li>
+    {{/users}}
+</ul>
+
 {{>partials/footer}}
