@@ -6,36 +6,18 @@ import { User } from "../models/User";
 import { Product } from "../models/Product";
 
 export const home = async (req: Request, res: Response) => {
-  // let users = await User.findAll();
+  // cadastrar
 
-  // let users = await User.findAll({
-  //   attributes: ["name", "age"],
-  // });
-
-  // let users = await User.findAll({
-  //   attributes: { exclude: ["id"] },
-  // });
-
-  let users = await User.findAll({
-    where: {
-      // age: {
-      //   [Op.or]: [20, 60],
-      // },
-      // [Op.or]: [{ age: 18 }, { age: 60 }],
-      // age: [18, 20, 60],
-      // age: {
-      //   // [Op.gte]: 20,
-      //   // [Op.lt]: 40
-      //   // [Op.between]: [20, 60],
-      //   // [Op.notBetween]: [20, 60],
-      //   // [Op.in]: [18, 60],
-      //   // [Op.notIn]: [18, 60],
-      // },
-      // name: {
-      //   [Op.like]: ["vi%"],
-      // },
-    },
+  const user = User.build({
+    name: "Eduardo",
   });
+
+  const idade = 10;
+  user["age"] = idade;
+  
+  await user.save();
+
+  // console.log("ID: " + user.id);
 
   let age: number = 90;
   let showOld: boolean = false;
@@ -54,7 +36,7 @@ export const home = async (req: Request, res: Response) => {
     products: list,
     expensives: expensiveList,
     frasesDoDia: [],
-    users,
+    // users,
   });
 
   // res.json(users);

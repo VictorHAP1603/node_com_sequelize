@@ -1,0 +1,63 @@
+{{>partials/header}}
+
+<form action="/cadastrousuario" method="post" >
+    <h1>
+        Cadastrar Usuário
+    </h1>
+
+    <input type="text" name="name" placeholder="Nome" >
+    <input type="number" name="age" placeholder="Idade">
+
+    <button type="submit" >Cadastrar</button>
+</form>
+
+
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>Idade</th>
+        <th>Ações</th>
+    </thead>
+    <tbody>
+       {{#users}}
+            <tr>
+                <td>{{ id }}</td>
+                <td>{{ name }}</td>
+                <td>{{ age }}</td>
+                <td>
+                    <button onclick="deletarUsuario({{id}})" >Excluir</button>
+                </td>
+            </tr>
+       {{/users}}
+
+       {{^users}}
+            <tr>
+                <p>Nenhum registro encontrado</p>
+            </tr>
+       {{/users}}
+    </tbody>
+</table>
+
+
+<script>
+
+    async function deletarUsuario(id) {
+        try {
+
+          //  const options = {
+          //      method: 'DELETE'
+          //  }
+
+         //   const res = await fetch(`/delete/${id}`, options)
+            
+            
+        } catch (err) {
+
+        }
+    }
+
+</script>
+
+
+{{>partials/footer}}

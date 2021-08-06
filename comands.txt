@@ -20,3 +20,114 @@ Op: Helper para operações lógicas
 
 [Op.gt]: 40    === > maaior 40
 [Op.gte]: 40   === >= maior ou igual 40
+
+
+
+COMANDOS:
+
+// let users = await User.findAll();
+
+  // let users = await User.findAll({
+  //   attributes: ["name", "age"],
+  // });
+
+  // let users = await User.findAll({
+  //   attributes: { exclude: ["id"] },
+  // });
+
+  // let users = await User.findAll({
+  //   where: {
+  //     // age: {
+  //     //   [Op.or]: [20, 60],
+  //     // },
+  //     // [Op.or]: [{ age: 18 }, { age: 60 }],
+  //     // age: [18, 20, 60],
+  //     // age: {
+  //     //   // [Op.gte]: 20,
+  //     //   // [Op.lt]: 40
+  //     //   // [Op.between]: [20, 60],
+  //     //   // [Op.notBetween]: [20, 60],
+  //     //   // [Op.in]: [18, 60],
+  //     //   // [Op.notIn]: [18, 60],
+  //     // },
+  //     // name: {
+  //     //   [Op.like]: ["vi%"],
+  //     // },
+  //   },
+  // });
+
+====================================================================================
+Order
+
+ where: {
+      age: {
+        [Op.gte]: 18,
+      },
+    },
+    order: [
+        "age",
+        ["name", "desc ou asc: asc é o padrao"]
+    ],
+}
+
+====================================================================================
+
+
+Limitando
+
+   where: {
+      age: {
+        [Op.gte]: 18,
+      },
+    },
+    order: [
+      ["age", "asc"],
+      ["name", "desc"],
+    ],
+    offset: 4, // offset é pra pular de dados em dado, 
+    limit: 2, // limite por page
+
+====================================================================================
+
+  // cadastrar
+
+  /-- build + save : é usado quando precisa manipular algum dado antes de salvar no banco
+
+  const user = User.build({
+     name: "Fudencio",
+     age: 28,
+   });
+  await user.save();
+
+
+
+  -- create : é usado quando não precisa manipular nada, salva no banco direto
+  const user = await User.create({
+    name: "Elon Musk",
+    age: 80,
+  });
+
+====================================================================================
+
+Update
+
+await User.update(
+    { age: 27 }, // 1° parametro, o valor que o campo sera setado
+    {
+      where: {  //  2° parametro, onde vai ser mudado
+        age: {
+          [Op.lt]: 20,
+        },
+      },
+    }
+  );
+
+// Um dado específico =========================
+
+  const result = await User.findAll({ where: { id: 1 } });
+  if (result.length > 0) {
+    let usuario = result[0];
+    usuario.age = 60;
+
+    await usuario.save();
+  }
