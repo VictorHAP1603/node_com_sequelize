@@ -12,6 +12,7 @@ export const User = sequelize.define<UserInstance>(
   {
     id: {
       primaryKey: true,
+      autoIncrement: true,
       type: DataTypes.INTEGER,
     },
     name: {

@@ -35,17 +35,13 @@ export const idadeAction = (req: Request, res: Response) => {
 
 // Cadastro
 export const registerPage = async (req: Request, res: Response) => {
-  let dados = {
-    name: "Victor Hugo",
-    age: 20,
-  };
-
-  const result = await User.findAll({ where: { id: 17 } });
-  if (result.length > 0) {
-    let usuario = result[0];
-
-    await usuario.destroy();
-  }
+  // await User.destroy({
+  //   where: {
+  //     age: {
+  //       [Op.lt]: 18,
+  //     },
+  //   },
+  // });
 
   const users = await User.findAll();
 
@@ -55,33 +51,65 @@ export const registerPage = async (req: Request, res: Response) => {
 };
 
 export const register = async (req: Request, res: Response) => {
-  try {
-    const { name, age } = req.body;
-    if (!name) throw new Error();
+  // try {
+  //   if (!name) throw new Error();
+  // } catch (err) {
+  //   console.log(err);
+  // }
 
-    const user = User.build({
-      name,
+  const { name, age } = req.body;
+
+  const [user, created] = await User.findOrCreate({
+    where: { name },
+    defaults: {
       age,
-    });
-    await user.save();
+    },
+  });
 
-    res.redirect("/cadastro");
-  } catch (err) {
-    console.log(err);
-  }
+  res.redirect("/cadastro");
 };
 
-// Delete
+// Ações
 
-export const deleteUser = async (req: Request, res: Response) => {
+export const remove = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    if (!id) throw new Error();
 
-    await User.findAll({
+    await User.destroy({
       where: {
         id,
       },
     });
+
+    return res.redirect("/cadastro");
+  } catch (err) {}
+};
+
+export const increment = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+
+    if (user) {
+      user.age++;
+      user.save();
+    }
+
+    return res.redirect("/cadastro");
+  } catch (err) {}
+};
+
+export const decrement = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findOne({ where: { id: id } });
+    if (user) {
+      user.age--;
+
+      user.save();
+    }
+
+    return res.redirect("/cadastro");
   } catch (err) {}
 };

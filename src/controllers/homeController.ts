@@ -6,17 +6,6 @@ import { User } from "../models/User";
 import { Product } from "../models/Product";
 
 export const home = async (req: Request, res: Response) => {
-  // cadastrar
-
-  const user = User.build({
-    name: "Eduardo",
-  });
-
-  const idade = 10;
-  user["age"] = idade;
-  
-  await user.save();
-
   // console.log("ID: " + user.id);
 
   let age: number = 90;
