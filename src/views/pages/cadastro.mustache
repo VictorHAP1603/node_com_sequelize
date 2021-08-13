@@ -15,6 +15,7 @@
 <table border="1" width="100%" cellspacing="0" cellpadding="1">
     <thead>
         <th>Id</th>
+        <th>Primeira Letra</th>
         <th>Nome</th>
         <th>Idade</th>
         <th>Ações</th>
@@ -23,6 +24,7 @@
        {{#users}}
             <tr>
                 <td>{{ id }}</td>
+                <td>{{firstLetterOfName}}</td>
                 <td>{{ name }}</td>
                 <td>{{ age }}</td>
                 <td>
