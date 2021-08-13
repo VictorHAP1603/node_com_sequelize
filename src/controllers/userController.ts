@@ -51,12 +51,6 @@ export const registerPage = async (req: Request, res: Response) => {
 };
 
 export const register = async (req: Request, res: Response) => {
-  // try {
-  //   if (!name) throw new Error();
-  // } catch (err) {
-  //   console.log(err);
-  // }
-
   const { name, age } = req.body;
 
   const [user, created] = await User.findOrCreate({

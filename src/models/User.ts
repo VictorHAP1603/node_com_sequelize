@@ -17,6 +17,17 @@ export const User = sequelize.define<UserInstance>(
     },
     name: {
       type: DataTypes.STRING,
+      // get() {
+      // quando for pegar os dados, passa por esse get
+      //   return this.getDataValue("name").toLowerCase();
+      // },
+      // set(value: string) {
+
+      // Quando for salvar algo, passa por esse set
+      //   const nameLow = value.toLowerCase();
+
+      //   this.setDataValue("name", nameLow);
+      // },
     },
     age: {
       type: DataTypes.INTEGER,
